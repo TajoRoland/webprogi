@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munkadíj Számítás</title>
+</head>
+<body>
+    <h1>Dolgozók munkadíjának számítása</h1>
+    <label>Azonosító:</label>
+    <input type="text" id="azonosito" placeholder="Azonosító"><br>
+    <label>Órabér:</label>
+    <input type="number" id="oraber" placeholder="Órabér"><br>
+    <label>Heti ledolgozott órák:</label>
+    <input type="number" id="ora" placeholder="Órák"><br>
+    <button onclick="hozzaadDolgozo()">Hozzáadás</button>
+    <button onclick="mentes()">Mentés</button>
+    <p id="uzenet"></p>
+
+    <script>
+        let dolgozok = [];
+
+        function hozzaadDolgozo() {
+            let azonosito = document.getElementById('azonosito').value;
+            let oraber = parseFloat(document.getElementById('oraber').value);
+            let ora = parseFloat(document.getElementById('ora').value);
+
+            if (azonosito && oraber > 0 && ora >= 0) {
+                let ber = 0;
+                if (ora > 40) {
+                    ber = (40 * oraber) + ((ora - 40) * oraber * 1.5);
+                } else {
+                    ber = ora * oraber;
+                }
+
+                dolgozok.push(`${azonosito}, ${oraber}, ${ora}, ${ber.toFixed(2)}`);
+                document.getElementById('uzenet').innerText = `${azonosito} keresete: ${ber.toFixed(2)} Ft`;
+
+                // Töröljük a mezőket a következő bevitelhez
+                document.getElementById('azonosito').value = '';
+                document.getElementById('oraber').value = '';
+                document.getElementById('ora').value = '';
+            } else {
+                document.getElementById('uzenet').innerText = 'Kérlek, tölts ki minden mezőt helyesen!';
+            }
+        }
+        // mentési logika
+        function mentes() {
+            let tartalom = dolgozok.join('\n');
+            let a = document.createElement('a');
+            a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(tartalom);
+            a.download = 'munkak.txt';
+            a.click();
+
+            document.getElementById('uzenet').innerText = 'Az adatok mentve a munkak.txt fájlba!';
+            dolgozok = [];
+        }
+    </script>
+</body>
+</html>

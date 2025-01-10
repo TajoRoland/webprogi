@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Összeadás 0 végjelig</title>
+</head>
+<body>
+    <h1>Számok összeadása</h1>
+    <label>Adj meg egy számot (0 a vége):</label>
+    <input type="number" id="bemenet" placeholder="Szám">
+    <button onclick="hozzaadSzamot()">Hozzáadás</button>
+    <p id="eredmeny">Összeg: 0</p>
+
+    <script>
+        let osszeg = 0;
+
+        function hozzaadSzamot() {
+            let szam = parseFloat(document.getElementById('bemenet').value);
+
+            if (szam === 0) {
+                document.getElementById('eredmeny').innerText = `Végösszeg: ${osszeg}`;
+                document.getElementById('bemenet').value = '';
+                return;
+            }
+
+            osszeg += szam; 
+            document.getElementById('eredmeny').innerText = `Összeg: ${osszeg}`;
+            document.getElementById('bemenet').value = '';
+        }
+    </script>
+</body>
+</html>

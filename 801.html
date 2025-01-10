@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számok mentése</title>
+</head>
+<body>
+    <h1>Adj meg számokat!</h1>
+    <input type="number" id="szamInput" placeholder="Szám">
+    <button onclick="hozzaadSzamot()">Hozzáadás</button>
+    <button onclick="mentes()">Mentés</button>
+    <p id="uzenet"></p>
+
+    <script>
+        let szamok = [];
+
+        function hozzaadSzamot() {
+            let szam = document.getElementById('szamInput').value;
+            szamok.push(szam);
+            document.getElementById('uzenet').innerText = 'Hozzáadtad: ' + szam;
+            document.getElementById('szamInput').value = '';
+        }
+
+        function mentes() {
+            let tartalom = szamok.join('\n');
+            let a = document.createElement('a');
+            a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(tartalom); // meghatározás
+            a.download = 'adat.txt'; // ezzel tölti le
+            a.click();
+            document.getElementById('uzenet').innerText = 'Elmentve!';
+            szamok = [];
+        }
+    </script>
+</body>
+</html>

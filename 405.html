@@ -1,0 +1,36 @@
+<!-- HTML rész -->
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osztó ellenőrzés</title>
+</head>
+<body>
+    <h1>Számok osztó ellenőrzése</h1>
+    <label>Első szám:</label>
+    <input type="number" id="elsoSzam" placeholder="Első szám"><br>
+    <label>Második szám:</label>
+    <input type="number" id="masodikSzam" placeholder="Második szám"><br>
+    <button onclick="ellenorizOszto()">Ellenőrzés</button>
+    <p id="eredmeny"></p>
+
+    <script>
+        function ellenorizOszto() {
+            let elso = parseFloat(document.getElementById('elsoSzam').value);
+            let masodik = parseFloat(document.getElementById('masodikSzam').value);
+
+            if (masodik !== 0 && elso % masodik === 0) {
+                document.getElementById('eredmeny').innerText = `${masodik} osztója ${elso}-nek.`;
+            } else if (masodik !== 0) {
+                document.getElementById('eredmeny').innerText = `${masodik} nem osztója ${elso}-nek.`;
+            } else {
+                document.getElementById('eredmeny').innerText = 'A második szám nem lehet 0!';
+            }
+
+            document.getElementById('elsoSzam').value = '';
+            document.getElementById('masodikSzam').value = '';
+        }
+    </script>
+</body>
+</html>

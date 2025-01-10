@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Név és Piramis</title>
+</head>
+<body>
+    <h1>Piramis Rajzolás</h1>
+    <button onclick="irjNevet()">Írd ki a nevem</button>
+    <button onclick="rajzoljPiramis()">Rajzolj piramist</button>
+    <pre id="kimenet"></pre>
+
+    <script>
+        function irjNevet() {
+            document.getElementById('kimenet').innerText = 'Roland';
+        }
+
+        function rajzoljPiramis() {
+            let sorok = 5;
+            let piramis = '';
+
+            for (let i = 1; i <= sorok; i++) {
+                let space = ' '.repeat(sorok - i); 
+                let at = '@'.repeat(2 * i - 1);    
+                piramis += space + at + '\n';
+            }
+
+            document.getElementById('kimenet').innerText += '\n' + piramis;
+        }
+    </script>
+</body>
+</html>

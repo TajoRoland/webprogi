@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-B csere</title>
+    <style>
+        body
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Eredmény:</h2>
+    <p id="eredmeny"></p>
+    
+    <label for="numA">A szám: </label>
+    <input type="number" name="" id="numA" placeholder="Írd be az A számot: ">
+
+    <label for="numB">B szám: </label>
+    <input type="number" name="" id="numB" placeholder="Írd be a B számot: ">
+    <button onclick="csere()">Cserélés</button>
+
+
+    <script>
+        function csere()
+        {
+            let a = parseFloat(document.getElementById("numA").value);
+            let b = parseFloat(document.getElementById("numB").value);
+
+            if (b > a)
+                {
+                 let temp = a;
+                 a = b;
+                 b = temp;   
+                }
+            document.getElementById("eredmeny").textContent = `Csere után: a = ${a}, b = ${b}`;
+        }
+    </script>
+</body>
+</html>

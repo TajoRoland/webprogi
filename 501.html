@@ -10,22 +10,20 @@
     <label>Adj meg egy számot (0 a vége):</label>
     <input type="number" id="bemenet" placeholder="Szám">
     <button onclick="hozzaadSzamot()">Hozzáadás</button>
-    <p id="eredmeny">Összeg: 0</p>
+    <output id="eredmeny" for="bemenet">Összeg: 0</output>
 
     <script>
         let osszeg = 0;
-
         function hozzaadSzamot() {
-            let szam = parseFloat(document.getElementById('bemenet').value);
-
+            let szam = parseFloat(document.getElementById('bemenet').value); // azért parseFloat mivel minden értéket számként értelmez pl.: 4m = 4
+            let eredmenyElem = document.getElementById('eredmeny');
             if (szam === 0) {
-                document.getElementById('eredmeny').innerText = `Végösszeg: ${osszeg}`;
+                eredmenyElem.value = `Végösszeg: ${osszeg}`;
                 document.getElementById('bemenet').value = '';
                 return;
             }
-
-            osszeg += szam; 
-            document.getElementById('eredmeny').innerText = `Összeg: ${osszeg}`;
+            osszeg += szam;
+            eredmenyElem.value = `Összeg: ${osszeg}`;
             document.getElementById('bemenet').value = '';
         }
     </script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számellenőrzés</title>
+</head>
+<body>
+    <h1>Számellenőrzés</h1>
+    <label>Adj meg egy valós számot:</label>
+    <input type="number" id="szam" step="any">
+    <button onclick="ellenoriz()">Ellenőrzés</button>
+    <p id="eredmeny"></p>
+
+    <script>
+        function ellenoriz() {
+            let szam = parseFloat(document.getElementById("szam").value);
+            let eredmeny = document.getElementById("eredmeny");
+
+            if (szam > 10 && szam < 20) {
+                eredmeny.textContent = "A szám 10 és 20 között van.";
+            } else {
+                eredmeny.textContent = "A szám nem esik 10 és 20 közé.";
+            }
+        }
+    </script>
+</body>
+</html>

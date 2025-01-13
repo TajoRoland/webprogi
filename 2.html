@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Névjegy</title>
+    <style>
+        pre {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <pre id="nevjegy"></pre>
+
+    <script>
+        function kiirNevjegyet() {
+            let nevjegy = `
+==============================
+||                          ||
+||    Nagy József           ||
+||                          ||
+||    15a                   ||
+||                          ||
+||    2012.01.04            ||
+||                          ||
+==============================
+`;
+        document.getElementById('nevjegy').textContent = nevjegy;
+        }
+        kiirNevjegyet();
+    </script>
+</body>
+</html>

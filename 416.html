@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maradék ellenőrzés</title>
+</head>
+<body>
+    <h1>Maradék Ellenőrzés</h1>
+    <label>Adj meg egy számot:</label>
+    <input type="number" id="szam">
+    <button onclick="ellenoriz()">Ellenőrzés</button>
+    <p id="eredmeny"></p>
+
+    <script>
+        function ellenoriz() {
+            let szam = parseInt(document.getElementById("szam").value);
+            let eredmeny = document.getElementById("eredmeny");
+
+            let maradek = szam % 2;
+
+            if (maradek === 0) {
+                eredmeny.textContent = "Nincs maradék";
+            } else {
+                eredmeny.textContent = "A maradék: " + maradek;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapok</title>
+</head>
+<body>
+    <p>A nagy lap mérete: 40cm x 50cm</p>
+    <label>Kis lap szélessége (cm):</label>
+    <input id="szelesseg" type="number"><br>
+    <label>Kis lap magassága (cm):</label>
+    <input id="magassag" type="number"><br>
+    <button onclick="szamolj()">Számolj</button>
+    <p id="eredmeny"></p>
+
+    <script>
+        function szamolj() {
+            let nagySzelesseg = 40, nagyMagassag = 50;
+            let kisSzelesseg = +document.getElementById('szelesseg').value;
+            let kisMagassag = +document.getElementById('magassag').value;
+
+            if (kisSzelesseg > 0 && kisMagassag > 0) {
+                let normal = Math.floor(nagySzelesseg / kisSzelesseg) * Math.floor(nagyMagassag / kisMagassag);
+                let forgatott = Math.floor(nagySzelesseg / kisMagassag) * Math.floor(nagyMagassag / kisSzelesseg);
+                document.getElementById('eredmeny').innerText = `Normál: ${normal}, Forgatva: ${forgatott}`;
+            } else {
+                document.getElementById('eredmeny').innerText = 'Adj meg pozitív számokat!';
+            }
+        }
+    </script>
+</body>
+</html>

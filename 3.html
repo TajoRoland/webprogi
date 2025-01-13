@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Név, Dátum és Rajz</title>
+    <style>
+        pre 
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <pre id="kimenet"></pre>
+    <script>
+        function megjelenit() {
+            const nev = "Nagy József";
+            const datum = new Date().toLocaleDateString("hu-HU");
+            const rajz = [
+                "    __",
+                "    ||",
+                "    || /|",
+                "    ||/ |",
+                "    |/  |",
+                "    /   |",
+                "   /    |",
+                "   |    |",
+                "   |    |",
+                "   ------"
+            ];
+            let kimenet = "";
+            kimenet += nev + "\n";
+            kimenet += datum + "\n\n";
+            for (let i = 0; i < rajz.length; i++) {
+                kimenet += rajz[i] + "\n";
+            }
+            document.getElementById("kimenet").textContent = kimenet;
+        }
+        megjelenit();
+    </script>
+</body>
+</html>

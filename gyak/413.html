@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eredmény: </h1>
+    <p id="eredmeny"></p>
+
+    <label for="numA"></label>
+    <input type="number" name="" id="numA">
+    <button onclick="bekeres()">Számol</button>
+    <script>
+        function bekeres()
+        {
+            let a = document.getElementById("numA").value;
+            if (a % 3 ===0)
+            {
+              document.getElementById("eredmeny").textContent = `${a}: Osztható 3-al!` 
+            } else
+            {
+            document.getElementById("eredmeny").textContent = `${a}: Nem osztható 3-al!`
+            }
+        }
+    </script>
+</body>
+</html>

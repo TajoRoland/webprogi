@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            text-align: center;
+        }
+    </style>
+    <!--
+Feladat 0414
+Írjon programot, amely beolvas egy egész számot, majd eldönti, hogy a szám osztható-e 2-vel és 3-mal!
+    -->
+</head>
+<body>
+    <h1>Eredmény: </h1>
+    <p id="eredmeny"></p>
+
+    <label for="numA"></label>
+    <input type="number" name="" id="numA">
+    <button onclick="bekeres()">Írj egy számot!</button>
+    <script>
+        function bekeres()
+        {
+            let a = document.getElementById("numA").value;
+            if (a % 2 ===0 & a % 3 ===0)
+             {
+                document.getElementById("eredmeny").textContent = `${a}: Osztható 2-vel és 3-mal!`
+             } else
+             {
+                document.getElementById("eredmeny").textContent = `${a}: Nem osztható 2-vel és 3-mal!`
+             }
+        }
+    </script>
+</body>
+</html>

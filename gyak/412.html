@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+Feladat 0412
+Adott három valós szám. Határozzuk meg közülük a legnagyobbat! A három számot kérjük be a felhasználóktól!
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eredmény: </h1>
+    <p id="eredmeny"></p>
+
+    <label for="numA"></label>
+    <input type="number" name="" id="numA">
+    <label for="numB"></label>
+    <input type="number" name="" id="numB">
+    <label for="numC"></label>
+    <input type="number" name="" id="numC">
+    <button onclick="bekeresek()">Számol</button>
+    <script>
+        function bekeresek()
+        {
+            let a = document.getElementById("numA").value;
+            let b = document.getElementById("numB").value;
+            let c = document.getElementById("numC").value;
+            let max = Math.max(a,b,c);
+            document.getElementById("eredmeny").textContent= `A legnagyobb szám a három körül: ${max}`
+        }
+    </script>
+</body>
+</html>

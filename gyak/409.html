@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 
+    Feladat: 0409
+    Olvassunk be egy valós számot, és döntsük el, hogy szigorúan 10 és 20 közé esik-e! 
+-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eredmény: </h1>
+    <p id="eredmeny"></p>
+    <label for="bekeres">Adj meg egy számot</label>
+    <input type="number" name="" id="bekeres" placeholder="Írj egy számot!">
+    <button onclick="ell()">Ellenőrzés</butteon>
+    <script>
+        function ell()
+        {
+            let a = document.getElementById("bekeres").value;
+            if (a >= 10 && a <= 20)
+            {
+                document.getElementById("eredmeny").textContent = `${a}: 10 és 20 között van.`
+            } else
+            {
+                document.getElementById("eredmeny").textContent = `${a}: Nincs 10 és 20 között.`
+            }
+        }  
+    </script>
+</body>
+</html>

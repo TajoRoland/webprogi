@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            padding: 20px;
+        }
+        #eredmeny {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007BFF;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .highlight {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body onload="elso()">
+    <div id="eredmeny"></div>
+    <script>
+        function elso() {
+            let xml = new XMLHttpRequest();
+            xml.open('GET', 'https://randomuser.me/api/', true);
+            xml.onreadystatechange = function() {
+                if (xml.readyState === 4 && xml.status === 200) {
+                    let data = JSON.parse(xml.responseText);
+                    let user = data.results[0];
+                    let html = `
+                        <div class="highlight">
+                            <img src="${user.picture.large}" alt="Profilkép" style="border-radius:50%;box-shadow:0 2px 8px #ccc;">
+                            <h1>${user.name.title} ${user.name.first} ${user.name.last}</h1>
+                            <p><strong>Telefonszám:</strong> ${user.phone}</p>
+                            <p><strong>Lakcím:</strong> ${user.location.postcode} ${user.location.city}, ${user.location.street.name} ${user.location.street.number}</p>
+                            <p><strong>Email:</strong> <a href="mailto:${user.email}">${user.email}</a></p>
+                        </div>
+                    `;
+                    document.getElementById('eredmeny').innerHTML = html;
+                }
+            };
+            xml.send();
+        }
+    </script>
+</body>
+</html>

@@ -42,23 +42,14 @@
     <script>
         function elso() {
             let xml = new XMLHttpRequest();
-            xml.open('GET', 'https://randomuser.me/api/', true);
+            xml.open("GET", "https://randomuser.me/api/", true);
             xml.onreadystatechange = function() {
-                if (xml.readyState === 4 && xml.status === 200) {
-                    let data = JSON.parse(xml.responseText);
-                    let user = data.results[0];
-                    let html = `
-                        <div class="highlight">
-                            <img src="${user.picture.large}" alt="Profilkép" style="border-radius:50%;box-shadow:0 2px 8px #ccc;">
-                            <h1>${user.name.title} ${user.name.first} ${user.name.last}</h1>
-                            <p><strong>Telefonszám:</strong> ${user.phone}</p>
-                            <p><strong>Lakcím:</strong> ${user.location.postcode} ${user.location.city}, ${user.location.street.name} ${user.location.street.number}</p>
-                            <p><strong>Email:</strong> <a href="mailto:${user.email}">${user.email}</a></p>
-                        </div>
-                    `;
-                    document.getElementById('eredmeny').innerHTML = html;
-                }
-            };
+                let adat = JSON.parse(xml.responseText);
+                let user = adat.results[0];
+                let szoveg = "";
+                szoveg += "<img src='" + user.picture.large + "'><h1>" + user.name.title + " " + user.name.first + " " + user.name.last + "</h1><p>Telefonszám: " + user.phone + "</p><p>Lakcím: " + user.location.postcode + " " + user.location.city + ", " + user.location.street.name + " " + user.location.street.number + "</p><p>Email: " + user.email + "</p>";
+                document.getElementById("eredmeny").innerHTML = szoveg;
+            }
             xml.send();
         }
     </script>

@@ -42,7 +42,7 @@
     <script>
         function elso() {
             let xml = new XMLHttpRequest();
-            xml.open("GET", "https://randomuser.me/api/", true);
+            xml.open("GET", "https://randomuser.me/api/");
             xml.onreadystatechange = function() {
                 let adat = JSON.parse(xml.responseText);
                 let user = adat.results[0];

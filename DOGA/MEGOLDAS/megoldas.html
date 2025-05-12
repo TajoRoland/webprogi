@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="feladat0()">Feladatok lekérése</button>
+    <button type="button" onclick="feladat1()">feladat1</button>
+    <button type="button" onclick="feladat2()">feladat2</button>
+    <button type="button" onclick="feladat3()">feladat3</button>
+    <div id="feladat0"></div>
+    <div id="feladat1"></div>
+    <div id="primKiiratas"></div>
+    <div id="feladat2"></div>
+    <div id="feladat3"></div>
+    <div id="feladat3info"></div>
+    <div id="feladat3eredmeny"></div>
+    
+    
+    
+    <script>
+        function feladat0() 
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function() 
+            {
+                document.getElementById("feladat0").innerHTML= this.response
+            }
+            valami.open("GET", "http://sulixerver/~pepa/dolgozat/dolgozat.php?nev=valentar22")
+            valami.send()
+        }
+
+        function feladat1() 
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function() 
+            {
+                document.getElementById("feladat1").innerHTML= this.response
+                feladat1POST();
+            }
+            valami.open("GET", "http://sulixerver/~pepa/dolgozat/dolgozat.php?nev=valentar22&feladat=1")
+            valami.send()
+        }
+        function feladat1POST()
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function() 
+            {
+                document.getElementById("feladat1").innerHTML += "<input type='nubmer' name='' id='primszam'>" + "<button type='button' onclick='feladat1SEND()'>Felada1Send</button>";
+            }
+            valami.open("GET", "http://sulixerver/~pepa/dolgozat/dolgozat.php?nev=valentar22&akcio=prim")
+            valami.send()
+
+            
+        }
+        function feladat1SEND()
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function() 
+            {
+                //document.getElementById("feladat1").innerHTML += "<input type='nubmer' name='' id='primszam'>" + "<button type='button'>asd</button>";
+                console.log(this.response)
+            }
+            valami.open("POST", "http://sulixerver/~pepa/dolgozat/dolgozat.php?nev=valentar22&akcio=prim")
+            valami.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            valami.send("szam="+document.getElementById("primszam").value)
+
+            
+        }
+        function feladat2() 
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function() 
+            {
+                document.getElementById("feladat1").innerHTML= this.response
+            }
+            valami.open("GET", "http://sulixerver/~pepa/dolgozat/dolgozat.php?nev=valentar22&feladat=2")
+            valami.send()
+        }
+        function feladat3()
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function()
+            {
+                //console.log(this.response)
+                document.getElementById("feladat3info").innerHTML = this.response;
+            }
+            valami.open("GET", "http://sulixerver/~pepa/dolgozat/dolgozat.php?nev=valentar22&feladat=3")
+            valami.send()
+        }
+        function feladat3eredmeny(elem)
+        {
+            const valami = new XMLHttpRequest();
+            valami.onload = function() 
+            {
+                let json = JSON.parse(valami.response);
+                console.log(json);
+                let szoveg="";
+                for(let i=0; i<json.results.length; i++)
+                {
+                    let nev="Hol lakik: "+json.results[i].location.country+"<br>"+"Neve: "+json.results[i].name.title+" "+json.results[i].name.first+" "+json.results[i].name.last+"<br>"+"Email címe "+json.results[i].email;
+                    szoveg+="<h3>"+nev+"</h3>";
+                    szoveg+="<div class='kep'><img src='"+json.results[i].picture.large+"'></div>";
+                }
+                document.getElementById("feladat3eredmeny").innerHTML=szoveg;
+
+
+            }
+            valami.open("GET", "https://randomuser.me/api/?results=5");
+            valami.send();
+        }
+
+    </script>
+</body>
+</html>

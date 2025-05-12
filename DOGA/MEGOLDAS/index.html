@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="eredmeny"></div>
+    <div id="szam">11</div>
+    <div id="elsofeladat"></div>
+    <div id="harmadik"></div>
+    <div id="prim">11</div>
+    <button  type="button" onclick="elso()">Első feladat</button>
+    <button  type="button" onclick="primek()">Primek</button>
+    <button onclick="harmadik()">Harmadik feladat</button>
+    <input type="number" id="primellenorzo">
+    <button onclick="primszam()"></button>
+    
+    <script>
+        function elso()
+        {
+            let xhttp = new XMLHttpRequest();
+            let feladat = "A dolgozatban <b>3</b> feladatot kell megoldani. <br>\r\n\t\t\tEgy feladatra jelentkezni ugyanúgy kell, ahogy ehhez a tartalomhoz hozzáfértél. \r\n\t\t\tA \"<i>nev</i>\" változó mellett a \"<i>feladat</i>\" változó is kell, 1, 2 vagy 3 értékkel, amelyek a feladat sorszámát jelentik. ";
+            let elsoFeladat = "<h3>A feladat leírása:</h3> Egy számról el kell dönteni, hogy prím-e. Egy szám bekéréséhez készíts egy űrlapot. A bekért adatot POST segítségével küld el a dolgozat.php-nak. A visszakapott eredményt, vagy üzenetet jelenítsd meg az oldalban.<br>\r\n\t\tGET változók: nev=sajatneved, akcio=prim<br>\r\n\t\tPOST változó: szam<br>\r\n\t\tA megoldásodat teszteld jó és rossz adatokkal is, és a visszakapott választ úgy jelenítsd meg, ahogy azt a válasz megkívánja."
+            let harmadikFeladat = "<h3>A feladat leírása:</h3> A randomuser.me oldalról kell betölteni adatokat, és azokat megjeleníteni. Először is kell egy űrlap, ahol meg lehet adni a userek számát, és be lehet állítani, hogy melyik adatok kellenek. Ezek segítségével le kell kérni az adatokat, és a lényegesebbeket megjeleníteni.<br>\r\n\t\tAz url: https://randomuser.me/api/<br>\r\n\t\tA GET változói:<ul><li>results: hány ember adata kell</li><li>inc: milyen adatok kellenek<ul><li>name</li><li>picture</li><li>location</li><li>email</li></ul></li>"
+
+
+            console.log(xhttp)
+            //document.getElementById("eredmeny").innerHTML = feladat;
+            //document.getElementById("elsofeladat").innerHTML = elsoFeladat;
+            document.getElementById("harmadik").innerHTML = harmadikFeladat;
+
+            
+            xhttp.onload=function()
+            {
+                let json = JSON.parse(xhttp.response);
+                console.log(json)
+                document.getElementById("eredmeny");
+
+            }
+            xhttp.open("GET", "/~pepa/dolgozat/dolgozat.php?nev=valentar22&feladat=3");
+            xhttp.send();
+        }
+        function primek() {
+            let szam = document.getElementById("szam").value;
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                let response = xhttp.responseText;
+                document.getElementById("prim").innerHTML = response;
+                let szam = ("Kérem, adjon meg egy számot:");
+                if (isPrime(szam)) {
+                    document.getElementById("primellenorzo").innerHTML = szam + " prím szám.";
+                } else {
+                    document.getElementById("primellenorzo").innerHTML = szam + " nem prím szám.";
+            }
+            };
+            xhttp.open("POST", "/~pepa/dolgozat/dolgozat.php?nev=valentar22&feladat=1&akcio=prim");
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send("szam=" + szam);
+        }
+
+            function harmadik(elem)
+        {
+            let xhttp= new XMLHttpRequest();
+            xhttp.onload=function()
+            {
+                let json = JSON.parse(xhttp.response);
+                console.log(json);
+                let szoveg="";
+                for(let i=0; i<json.results.length; i++)
+                {
+                    let nev="Hol lakik: "+json.results[i].location.country+"<br>"+"Neve: "+json.results[i].name.title+" "+json.results[i].name.first+" "+json.results[i].name.last+" "+json.results[i];
+                    szoveg+="<h3>"+nev+"</h3>";
+                    szoveg+="<div class='kep'><img src='"+json.results[i].picture.large+"'></div>";
+                }
+                document.getElementById("eredmeny").innerHTML=szoveg;
+
+
+            }
+            xhttp.open("GET", "https://randomuser.me/api/?results=5");
+            xhttp.send();
+        }   
+    </script>
+
+</body>
+</html>
